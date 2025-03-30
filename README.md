@@ -1,4 +1,4 @@
-# Practice React
+# 🚀Practice JavaScript, Node.js, React.js
 
 ### Section01 : JavaScript 기초
 
