@@ -7,6 +7,7 @@ import Bulb from "./components/Bulb";
 import Counter from "./components/Counter";
 import { useState } from "react";
 import Register from "./components/Register";
+import Register2 from "./components/Register2";
 
 function App() {
   // 함수 컴포넌트(대중적): html 태그들을 반환하는 함수
@@ -52,7 +53,7 @@ function App() {
 
   return (
     <>
-      <Register />
+      <Register2 />
     </>
   );
 }
