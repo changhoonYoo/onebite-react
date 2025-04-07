@@ -9,6 +9,7 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Register2 from "./components/Register2";
 import Register3 from "./components/Register3";
+import HookExam from "./components/HookExam";
 
 function App() {
   // 함수 컴포넌트(대중적): html 태그들을 반환하는 함수
@@ -54,7 +55,7 @@ function App() {
 
   return (
     <>
-      <Register3 />
+      <HookExam />
     </>
   );
 }
