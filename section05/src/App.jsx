@@ -8,6 +8,7 @@ import Counter from "./components/Counter";
 import { useState } from "react";
 import Register from "./components/Register";
 import Register2 from "./components/Register2";
+import Register3 from "./components/Register3";
 
 function App() {
   // 함수 컴포넌트(대중적): html 태그들을 반환하는 함수
@@ -43,17 +44,17 @@ function App() {
   // );
 
   // useState(초기값, 상태변화함수)
-  // 컴포넌트 state값이 바뀌면 리랜더링(다시 return) 된다.
+  // 컴포넌트 state값이 바뀌면 리렌더링링(다시 return) 된다.
   // const [count, setState] = useState(0);
   // const [light, setLight] = useState("OFF");
 
-  // 컴포넌트가 리랜더링 되는 3가지 상황
-  // 1. state 값 변경, 2. props 값 변경, 3. 부모 컴포넌트 리랜더링 -> 자식 컴포넌트 리랜더링
+  // 컴포넌트가 리렌더링 되는 3가지 상황
+  // 1. state 값 변경, 2. props 값 변경, 3. 부모 컴포넌트 리렌더링 -> 자식 컴포넌트 리렌더링
   // state 값은 관련이 없다면 컴포넌트 별로 따로 구분하는 것이 좋다.
 
   return (
     <>
-      <Register2 />
+      <Register3 />
     </>
   );
 }
