@@ -17,6 +17,9 @@ function App() {
   // 라이프사이클
   // 1. 마운트: 탄생
   const isMount = useRef(false);
+  // useRef()는 컴포넌트가 리렌더링 되어도 값이 유지됨
+  // useRef()는 DOM(Document Object Modal) 요소에 직접 접근해야 할 때 사용
+
   useEffect(() => {
     // 콜백함수, 빈 배열
     console.log("mount");
