@@ -53,12 +53,18 @@ function App() {
     );
   };
 
+  const onDelete = (targetId) => {
+    // targetId를 통해 어떤 id의 todo인지 확인
+    // todos 배열에서 targetId와 같은 id를 가진 todo를 찾아서 삭제
+    setTodos(todos.filter((todos) => todos.id !== targetId));
+  };
+
   return (
     <>
       <div className="App">
         <Header />
         <Editor onCreate={onCreate} />
-        <List todos={todos} onUpdate={onUpdate} />
+        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
       </div>
     </>
   );
