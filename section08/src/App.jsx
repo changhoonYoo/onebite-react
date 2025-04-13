@@ -43,12 +43,22 @@ function App() {
     setTodos([newTodo, ...todos]);
   };
 
+  const onUpdate = (targetId) => {
+    // targetId를 통해 어떤 id의 todo인지 확인
+    // todos 배열에서 targetId와 같은 id를 가진 todo를 찾아서 isDone 값을 변경
+    setTodos(
+      todos.map((todos) =>
+        todos.id === targetId ? { ...todos, isDone: !todos.isDone } : todos
+      )
+    );
+  };
+
   return (
     <>
       <div className="App">
         <Header />
         <Editor onCreate={onCreate} />
-        <List todos={todos} />
+        <List todos={todos} onUpdate={onUpdate} />
       </div>
     </>
   );
