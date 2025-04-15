@@ -2,7 +2,7 @@ import "./App.css";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import Header from "./components/Header";
-import { useState, useRef } from "react";
+import { useState, useRef, useReducer } from "react";
 import Exam from "./components/exam";
 
 const mockData = [
@@ -26,47 +26,63 @@ const mockData = [
   },
 ];
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "CREATE":
+      return [action.data, ...state];
+    case "UPDATE":
+      return state.map((item) =>
+        item.id === action.targetId ? { ...item, isDone: !item.isDone } : item
+      );
+    case "DELETE":
+      return state.filter((item) => item.id !== action.targetId);
+    default:
+      return state;
+  }
+}
+
 function App() {
-  const [todos, setTodos] = useState(mockData);
+  // const [todos, setTodos] = useState(mockData);
   const idRef = useRef(3);
   // useRef는 컴포넌트가 리렌더링 되어도 값이 유지됨
   // useRef는 DOM을 직접적으로 조작할 때 사용하기도 하지만, 일반적인 변수 저장에도 사용 가능
   // useRef는 초기값을 설정할 수 있고, current라는 속성을 통해 값을 변경할 수 있음
 
-  const onCreate = (content) => {
-    const newTodo = {
-      id: idRef.current++,
-      isDone: false,
-      content: content,
-      date: new Date().getTime(),
-    };
+  const [todos, dispatch] = useReducer(reducer, mockData);
 
-    setTodos([newTodo, ...todos]);
+  const onCreate = (content) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: idRef.current++,
+        isDone: false,
+        content: content,
+        date: new Date().getTime(),
+      },
+    });
   };
 
   const onUpdate = (targetId) => {
-    // targetId를 통해 어떤 id의 todo인지 확인
-    // todos 배열에서 targetId와 같은 id를 가진 todo를 찾아서 isDone 값을 변경
-    setTodos(
-      todos.map((todos) =>
-        todos.id === targetId ? { ...todos, isDone: !todos.isDone } : todos
-      )
-    );
+    dispatch({
+      type: "UPDATE",
+      targetId: targetId,
+    });
   };
 
   const onDelete = (targetId) => {
-    // targetId를 통해 어떤 id의 todo인지 확인
-    // todos 배열에서 targetId와 같은 id를 가진 todo를 찾아서 삭제
-    setTodos(todos.filter((todos) => todos.id !== targetId));
+    dispatch({
+      type: "DELETE",
+      targetId: targetId,
+    });
   };
 
   return (
     <>
       <div className="App">
-        {/* <Header />
+        <Header />
         <Editor onCreate={onCreate} />
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
-        <Exam />
+        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+        {/* <Exam /> */}
       </div>
     </>
   );
