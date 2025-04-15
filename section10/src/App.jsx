@@ -2,7 +2,7 @@ import "./App.css";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import Header from "./components/Header";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef, useReducer, useCallback } from "react";
 import Exam from "./components/exam";
 
 const mockData = [
@@ -50,7 +50,10 @@ function App() {
 
   const [todos, dispatch] = useReducer(reducer, mockData);
 
-  const onCreate = (content) => {
+  // useCallback은 메모이제이션된 함수를 반환함
+  // useCallback은 첫 번째 인자로 함수를 받고, 두 번째 인자로 의존성 배열을 받음
+  // [] 의존성 배열이 비어있으면 컴포넌트가 처음 렌더링될 때만 함수를 생성함
+  const onCreate = useCallback((content) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -60,21 +63,21 @@ function App() {
         date: new Date().getTime(),
       },
     });
-  };
+  }, []);
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
       targetId: targetId,
     });
-  };
+  }, []);
 
-  const onDelete = (targetId) => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId: targetId,
     });
-  };
+  }, []);
 
   return (
     <>
