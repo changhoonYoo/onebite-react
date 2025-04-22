@@ -1,0 +1,7 @@
+.App {
+  width: 500px; /* 앱의 고정 너비 설정 */
+  margin: 0 auto; /* 앱을 수평 중앙에 배치 */
+  display: flex; /* 항목을 행으로 정렬 */
+  flex-direction: column; /* 항목을 세로로 쌓기 */
+  gap: 10px; /* 항목 간의 간격 */
+}

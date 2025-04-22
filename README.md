@@ -39,3 +39,7 @@
 #### 📖 Section 10: 최적화
 
 - useMemo, React.memo, useCallback 사용하여 최적화합니다.
+
+#### 📖 Section 11: Context
+
+- Props의 단점(Props Drilling)을 대체하는 Context를 실습합니다.
