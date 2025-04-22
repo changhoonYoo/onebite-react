@@ -8,6 +8,7 @@ import {
   useReducer,
   useCallback,
   createContext,
+  useMemo,
 } from "react";
 import Exam from "./components/exam";
 
@@ -49,7 +50,9 @@ function reducer(state, action) {
 
 // 데이터를 하위의 컴포넌트에게 전달하기 위한 객체
 // App() 컴포넌트 내부에 생성하지 않은 이유는 리렌더링 될 때마다 새롭게 생성되는것을 막기 위해서
-export const TodoContext = createContext();
+// export const TodoContext = createContext();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 // console.log(TodoContext);
 // provider는 공급받을 컴포넌트들을 감싸기 위한 컴포넌트이다.
 
@@ -91,21 +94,22 @@ function App() {
     });
   }, []);
 
+  // useMemo를 사용하여 메모이제이션된 값을 반환함
+  // 두 번째 인자에 빈 배열이 들어가면 컴포넌트가 처음 렌더링될 때만 함수를 실행함
+  const memoizedDispatch = useMemo(() => {
+    return { onCreate, onUpdate, onDelete };
+  }, []);
+
   return (
     <>
       <div className="App">
         <Header />
-        <TodoContext.Provider
-          value={{
-            todos,
-            onCreate,
-            onUpdate,
-            onDelete,
-          }}
-        >
-          <Editor />
-          <List />
-        </TodoContext.Provider>
+        <TodoStateContext.Provider value={todos}>
+          <TodoDispatchContext.Provider value={memoizedDispatch}>
+            <Editor />
+            <List />
+          </TodoDispatchContext.Provider>
+        </TodoStateContext.Provider>
         {/* <Exam /> */}
       </div>
     </>

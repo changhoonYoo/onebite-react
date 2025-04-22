@@ -1,10 +1,10 @@
-import { TodoContext } from "../App";
+import { TodoStateContext } from "../App";
 import "./List.css";
 import TodoItem from "./TodoItem";
 import { useMemo, useState, useContext } from "react"; // useState 훅을 사용하여 상태 관리
 
 const List = () => {
-  const { todos } = useContext(TodoContext); // TodoContext에서 todos 배열을 가져옴
+  const todos = useContext(TodoStateContext); // TodoStateContext에서 todos 배열을 가져옴
   const [search, setSearch] = useState(""); // 검색어 상태 관리
 
   const onChangeSearch = (e) => {

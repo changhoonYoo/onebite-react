@@ -1,11 +1,11 @@
-import { TodoContext } from "../App";
+import { TodoDispatchContext } from "../App";
 import "./TodoItem.css";
 import { memo, useContext } from "react";
 
 // 최적화의 시기는 1. 기능 구현 -> 2. 최적화 작업
 // 꼭 최적화가 필요할 것 같은 연산, 컴포넌트, 함수에 대해서만 최적화 작업을 진행하는 것이 좋음
 const TodoItem = ({ id, isDone, content, date }) => {
-  const { onUpdate, onDelete } = useContext(TodoContext); // TodoContext에서 onUpdate와 onDelete 함수를 가져옴
+  const { onUpdate, onDelete } = useContext(TodoDispatchContext); // TodoDispatchContext에서 onUpdate와 onDelete 함수를 가져옴
   const onChangeCheckbox = () => {
     onUpdate(id); // id를 통해 어떤 todo인지 확인하고 isDone 값을 변경
   };
