@@ -43,3 +43,7 @@
 #### 📖 Section 11: Context
 
 - Props의 단점(Props Drilling)을 대체하는 Context를 실습합니다.
+
+#### 🛠️ Section 12: Final Project 감정 일기장
+
+- 배운 내용을 바탕으로 프로젝트를 실습합니다.
