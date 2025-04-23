@@ -24,12 +24,12 @@ function App() {
         <a href="/">Home</a>
         <a href="/new">New</a>
         <a href="/diary">Diary</a> */}
-        <button onClick={onClickButton}>New 페이지로 이동</button>
       </div>
+      <button onClick={onClickButton}>New 페이지로 이동</button>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
-        <Route path="/diary" element={<Diary />} />
+        <Route path="/diary/:id" element={<Diary />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
@@ -42,4 +42,5 @@ function App() {
 
 // Link 컴포넌트는 a 태그와 비슷한 역할을 한다.
 // Link 컴포넌트는 페이지를 이동할 때 새로고침을 하지 않고, <a> 태그는 새로고침을 한다.
+// useNavigate 훅을 사용하면 페이지를 이동할 때 새로고침을 하지 않고 이동할 수 있다.
 export default App;
